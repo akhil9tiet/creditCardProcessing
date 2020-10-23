@@ -1,7 +1,7 @@
 var expect = require('chai').expect;
 const { add } = require('../src/add');
 
-describe('credit add function test', function () {
+describe('add function test', function () {
 	it('should add the name, limit and 0 balance based on the input for the user', function () {
 		result = add({ name: 'Tom', card: '4111111111111111', limit: 1000, balance: 0 }, []);
 		expect(JSON.stringify(result)).to.equal(JSON.stringify([{ name: 'Tom', limit: 1000, balance: 0 }]));
