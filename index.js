@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 var file = require('./src/fileProcessing');
 const data = file.data;
-const cardProcessing = require('./src/creditCardProcessor');
+const creditCard = require('./src/creditCardProcessor');
 
-let result = cardProcessing.creditCardProcessor(data);
+let result = creditCard.creditCardProcessor(data);
 
-console.log(result)
+console.log(result);
