@@ -1,3 +1,4 @@
+const { luhn10check } = require('./luhn10check');
 let activity = []; //['name',limit, balance]
 let result = [];
 
@@ -60,21 +61,6 @@ function credit(input) {
 			record.balance -= input.credit;
 		}
 	}
-}
-
-function luhn10check(cardNumber) {
-	let nCheck = 0;
-	let bEven = false;
-	for (let n = cardNumber.length - 1; n >= 0; n--) {
-		let cDigit = cardNumber[n];
-		let nDigit = parseInt(cDigit, 10);
-		if (bEven && (nDigit *= 2) > 9) {
-			nDigit -= 9;
-		}
-		nCheck += nDigit;
-		bEven = !bEven;
-	}
-	return nCheck % 10 === 0;
 }
 
 module.exports.creditCardProcessor = creditCardProcessor;
