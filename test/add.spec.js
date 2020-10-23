@@ -25,7 +25,7 @@ describe('add function test', function () {
 		expect(JSON.stringify(result)).to.equal(JSON.stringify([{ name: 'Ron', limit: 0, balance: 'error' }]));
 	});
 
-	it('should add the name, limit and error as balance when there is already an entry', function () {
+	it('should add the name, limit and error as balance when an entry already exisits', function () {
 		let result = [];
 		result = add({ name: 'Ron', card: '4111111111111111', limit: 5000, balance: 0 }, [
 			{ name: 'Tom', limit: 1000, balance: 0 },
