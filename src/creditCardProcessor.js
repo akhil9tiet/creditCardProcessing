@@ -1,7 +1,7 @@
 let activity = []; //['name',limit, balance]
 let result = [];
 
-exports.creditCardProcessor = function creditCardProcessor(data) {
+function creditCardProcessor(data) {
 	data.map((commands) => {
 		let command = commands.split(' ');
 		switch (command[0]) {
@@ -32,9 +32,8 @@ exports.creditCardProcessor = function creditCardProcessor(data) {
 	Object.keys(result)
 		.sort()
 		.forEach((key) => (orderedResult[key] = result[key]));
-
 	return JSON.stringify(orderedResult);
-};
+}
 
 function add(input) {
 	let isCardValid = luhn10check(input.card);
@@ -78,6 +77,4 @@ function luhn10check(cardNumber) {
 	return nCheck % 10 === 0;
 }
 
-function sortByKey(hash) {
-	Object.keys(hash).sort();
-}
+module.exports.creditCardProcessor = creditCardProcessor;
