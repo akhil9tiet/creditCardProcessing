@@ -1,6 +1,5 @@
 var expect = require('chai').expect;
 const { luhn10check } = require('../src/luhn10check');
-let result;
 
 describe('luhn-10 check test', function () {
 	it('should return false if card number length is greater than 19', function () {
