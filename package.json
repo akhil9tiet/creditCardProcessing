@@ -1,0 +1,22 @@
+{
+	"name": "myprogram",
+	"version": "1.0.0",
+	"description": "basic credit card processing code challenge",
+	"main": "index.js",
+	"scripts": {
+		"test": "mocha"
+	},
+	"keywords": [
+		"nodejs",
+		"credit card processing",
+		"code challenge",
+		"automated unit tests",
+		"braintree"
+	],
+	"author": "Akhil Gupta",
+	"license": "ISC",
+	"devDependencies": {
+		"chai": "^4.2.0",
+		"mocha": "^8.2.0"
+	}
+}
