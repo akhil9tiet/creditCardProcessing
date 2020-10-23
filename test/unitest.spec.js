@@ -1,7 +1,7 @@
 // var assert = require('chai').assert;
 var expect = require('chai').expect;
 const { creditCardProcessor } = require('../src/creditCardProcessor');
-let result = [];
+
 describe('cardProcessing test', function () {
 	it('result should show correct name and balance for complex manipulations on single user', function () {
 		result = creditCardProcessor([
