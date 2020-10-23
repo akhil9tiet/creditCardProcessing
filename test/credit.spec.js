@@ -18,5 +18,11 @@ describe('credit function tests', function () {
 		let result = [];
 		result = credit({ name: 'Tom', credit: 500 }, [{ name: 'Tom', limit: 1000, balance: 500 }]);
 		expect(JSON.stringify(result)).to.equal(JSON.stringify([{ name: 'Tom', limit: 1000, balance: 0 }]));
-	});
+  });
+  
+  it('should not reduce credit from the balance, if the person is not in the ledger ', function () {
+		let result = [];
+		result = credit({ name: 'Tom', credit: 500 }, [{ name: 'Sally', limit: 1000, balance: 500 }]);
+		expect(JSON.stringify(result)).to.equal(JSON.stringify([{ name: 'Sally', limit: 1000, balance: 500 }]));
+  });
 });
