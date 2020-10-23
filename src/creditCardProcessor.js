@@ -1,26 +1,30 @@
-const { luhn10check } = require('./luhn10check');
-let activity = []; //['name',limit, balance]
+
+const { add } = require('./add');
+const { charge } = require('./charge');
+const { credit } = require('./credit');
+
 let result = [];
 
 function creditCardProcessor(data) {
-	data.map((commands) => {
+	let ledger = []; //[name,card,limit, balance]
+	data.map((commands, i) => {
 		let command = commands.split(' ');
 		switch (command[0]) {
 			case 'Add':
-				add({ name: command[1], card: command[2], limit: Number(command[3].slice(1)), balance: 0 });
+				add({ name: command[1], card: command[2], limit: Number(command[3].slice(1)), balance: 0 }, ledger);
 				break;
 			case 'Charge':
-				charge({ name: command[1], charge: Number(command[2].slice(1)) });
+				charge({ name: command[1], charge: Number(command[2].slice(1)) }, ledger);
 				break;
 			case 'Credit':
-				credit({ name: command[1], credit: Number(command[2].slice(1)) });
+				credit({ name: command[1], credit: Number(command[2].slice(1)) }, ledger);
 				break;
 			default:
 				break;
 		}
 	});
 
-	result = activity.reduce(function (record, obj) {
+	result = ledger.reduce(function (record, obj) {
 		if (!obj.balance) {
 			record[obj.name] = 'error';
 		} else {
@@ -34,33 +38,6 @@ function creditCardProcessor(data) {
 		.sort()
 		.forEach((key) => (orderedResult[key] = result[key]));
 	return JSON.stringify(orderedResult);
-}
-
-function add(input) {
-	let isCardValid = luhn10check(input.card);
-	if (!isCardValid) {
-		activity.push({ name: input.name, limit: input.limit, balance: 'error' });
-	} else {
-		activity.push({ name: input.name, limit: input.limit, balance: 0 });
-	}
-}
-
-function charge(input) {
-	for (let record of activity) {
-		if (record.name === input.name && record.balance !== 'error') {
-			if (record.balance + input.charge < record.limit) {
-				record.balance += input.charge;
-			}
-		}
-	}
-}
-
-function credit(input) {
-	for (let record of activity) {
-		if (record.name === input.name && record.balance !== 'error') {
-			record.balance -= input.credit;
-		}
-	}
 }
 
 module.exports.creditCardProcessor = creditCardProcessor;
