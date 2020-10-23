@@ -1,4 +1,3 @@
-
 const { add } = require('./add');
 const { charge } = require('./charge');
 const { credit } = require('./credit');
@@ -25,7 +24,7 @@ function creditCardProcessor(data) {
 	});
 
 	result = ledger.reduce(function (record, obj) {
-		if (!obj.balance) {
+		if (obj.balance === 'error') {
 			record[obj.name] = 'error';
 		} else {
 			record[obj.name] = `$${obj.balance}`;
