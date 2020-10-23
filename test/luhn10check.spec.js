@@ -2,17 +2,17 @@ var expect = require('chai').expect;
 const { luhn10check } = require('../src/luhn10check');
 
 describe('luhn-10 check test', function () {
-	it('should return false if card number length is greater than 19', function () {
+	it('should return false if length of card number is greater than 19', function () {
 		result = luhn10check('411111111111111111111');
 		expect(result).to.equal(false);
 	});
 
-	it('should return false if card numbers last digit does not pass the luhn algorithmic test', function () {
+	it('should return false if last digit of card number does not pass the luhn algorithmic test', function () {
 		result = luhn10check('4111111111111110');
 		expect(result).to.equal(false);
 	});
 
-	it('should return false if card number has anything other than digit', function () {
+	it('should return false if card number has non-numeric characters', function () {
 		result = luhn10check('411111A111111111');
 		expect(result).to.equal(false);
 	});
