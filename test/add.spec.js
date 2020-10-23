@@ -11,17 +11,30 @@ describe('credit add function test', function () {
 		let result = [];
 		result = add({ name: 'Ron', card: '4111111111111111', limit: 0, balance: 0 }, []);
 		expect(JSON.stringify(result)).to.equal(JSON.stringify([{ name: 'Ron', limit: 0, balance: 'error' }]));
-  });
-  
-  it('should add the name, limit and error as balance when the card number does not qualify luhn-10 check', function () {
+	});
+
+	it('should add the name, limit and error as balance when the card number does not qualify luhn-10 check', function () {
 		let result = [];
 		result = add({ name: 'Ron', card: '4111111111111110', limit: 1000, balance: 0 }, []);
 		expect(JSON.stringify(result)).to.equal(JSON.stringify([{ name: 'Ron', limit: 1000, balance: 'error' }]));
-  });
+	});
 
-  it('should add the name, limit and error as balance when the card number does not qualify luhn-10 check and/or limit is less than equal to 0', function () {
+	it('should add the name, limit and error as balance when the card number does not qualify luhn-10 check and/or limit is less than equal to 0', function () {
 		let result = [];
 		result = add({ name: 'Ron', card: '4111111111111110', limit: 0, balance: 0 }, []);
 		expect(JSON.stringify(result)).to.equal(JSON.stringify([{ name: 'Ron', limit: 0, balance: 'error' }]));
-  });
+	});
+
+	it('should add the name, limit and error as balance when there is already an entry', function () {
+		let result = [];
+		result = add({ name: 'Ron', card: '4111111111111111', limit: 5000, balance: 0 }, [
+			{ name: 'Tom', limit: 1000, balance: 0 },
+		]);
+		expect(JSON.stringify(result)).to.equal(
+			JSON.stringify([
+				{ name: 'Tom', limit: 1000, balance: 0 },
+				{ name: 'Ron', limit: 5000, balance: 0 },
+			])
+		);
+	});
 });
