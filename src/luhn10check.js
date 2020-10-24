@@ -1,7 +1,7 @@
 function luhn10check(cardNumber) {
 	let nCheck = 0;
 	let bEven = false;
-	if (cardNumber.length > 19) {
+	if (cardNumber.length > 19 || cardNumber.length < 13) {
 		return false;
 	}
 	for (let n = cardNumber.length - 1; n >= 0; n--) {

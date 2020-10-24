@@ -7,7 +7,7 @@ describe('luhn-10 check test', function () {
 		expect(result).to.equal(false);
 	});
 
-	it('should return false if card numbers last digit does not pass the luhn algorithmic test', function () {
+	it('should return false if card numbers last digit does not pass the luhn-10 checksum algorithmic test', function () {
 		result = luhn10check('4111111111111110');
 		expect(result).to.equal(false);
 	});
